@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.mini.prj.mapper.PayMapper">
+	<select id="paySelectList"
+		resultType="co.mini.prj.service.PayVO">
+		<if test="str=='trainer'">
+			SELECT *
+			FROM PAY
+			WHERE PRODUCT_ID = (SELECT PRODUCT_ID
+			FROM
+			TRAINERDATA
+			WHERE MEMBER_ID = #{memberId})
+		</if>
+		<if test="str=='customer'">
+			SELECT *
+			FROM PAY
+			WHERE MEMBER_ID = #{memberId}
+		</if>
+
+	</select>
+	<select id="paySelect" resultType="co.mini.prj.service.PayVO">
+		SELECT *
+		FROM PAY
+		WHERE
+		PAY_NUM =
+		#{payNum}
+	</select>
+	<insert id="payInsert"
+		parameterType="co.mini.prj.service.PayVO">
+		<selectKey keyProperty="payNum" resultType="int"
+			order="BEFORE">
+			SELECT CASE WHEN MAX(PAY_NUM) IS NULL THEN 1 ELSE MAX(PAY_NUM)
+			+ 1 END AS
+			PN FROM PAY
+		</selectKey>
+		INSERT INTO PAY VALUES (#{payNum}, #{payPlan}, #{price}, #{memberId},
+		#{productId}, SYSDATE)
+	</insert>
+	<update id="payUpdate">
+		UPDATE PAY
+		<set>
+			<if test="payPlan != null">PAY_PLAN = #{payPlan}, </if>
+			<if test="price != null">PRICE = #{price}</if>
+		</set>
+		WHERE PAY_NUM = #{payNum}
+	</update>
+
+	<delete id="payDelete">
+		DELETE FROM PAY WHERE PAY_NUM = #{payNum}
+	</delete>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.mini.prj.mapper.ProductMapper">
+<select id="productSelectList" resultType="co.mini.prj.product.service.ProductVO">
+	<!-- 전체목록 -->
+	SELECT * FROM PRODUCT
+</select>
+<select id="productSelect" resultType="co.mini.prj.product.service.ProductVO">
+	<!-- 선택 목록 -->
+	SELECT * 
+	FROM PRODUCT 
+	WHERE PRODUCT_ID = #{producId}
+</select>
+<insert id="productInsert" parameterType="co.mini.prj.product.service.ProductVO">
+	INSERT INTO product
+	VALUES(#{productId},#{price},#{count},#{productName},#{productType})
+</insert>
+<update id="productUpdate">
+	UPDATE product
+	SET price = #{price},
+		count = #{count},
+		product_name = #{productName},
+	WHERE product_ID = #{productId}
+</update>
+<delete id="productDelete">
+	DELETE FROM product WHERE product_ID = #{productId}
+</delete>
+</mapper>

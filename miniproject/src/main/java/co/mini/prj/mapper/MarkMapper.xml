@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.mini.prj.mapper.MarkMapper">
+
+<select id="markSelectList" resultType="co.mini.prj.mark.service.MarkVO">
+	SELECT * FROM MARK
+</select>
+
+<select id="markSelect" resultType="co.mini.prj.mark.service.MarkVO">
+	SELECT AVG(TRAINER_MARK) FROM MARK WHERE TRAINER_ID = #{trainerId}
+</select>
+
+<insert id="markInsert">
+	INSERT INTO MARK VALUES(#{memberId},#{trainerId},#{trainerMark},default)
+</insert>
+
+<update id="markUpdate">
+	UPDATE MARK
+	<set>
+	<if test = "trainerId != null">TRAINER_ID = #{trainerId},</if>
+	<if test = "memberId != null">TRAINER_MARK = #{trainerMark}</if>
+	</set>
+	WHERE MEMBER_ID = #{memberId}
+</update>
+
+<delete id="markDelete">
+	DELETE FROM MARK WHERE TRAINER_ID = #{trainerId} AND MEMBER_ID = #{memberId}
+</delete>
+
+</mapper>

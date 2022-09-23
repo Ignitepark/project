@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.mini.prj.mapper.MemberMapper">
+	<select id="memberSelectList"
+		resultType="co.mini.prj.member.service.MemberVO">
+		SELECT * FROM MEMBER
+		<if test="str==all"></if>
+		<if test="str==trainer">WHERE MEMBER_AUTHOR='TRAINER'</if>
+		<if test="str==trainerMan">WHERE MEMBER_NO = (SELECT MEMBER_NO FROM MEMBERDATA WHERE
+			MEMBER_GENDER = 'MAN') AND WHERE MEMBER_AUTHOR='TRAINER'
+		</if>
+		<if test="str==trainerWoman">WHERE MEMBER_NO = (SELECT MEMBER_NO FROM MEMBERDATA WHERE
+			MEMBER_GENDER = 'WOMAN') AND WHERE MEMBER_AUTHOR='TRAINER'
+		</if>
+	</select>
+	<select id="memberSelect"
+		resultType="co.mini.prj.member.service.MemberVO">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{memberId}
+		<if test="memberPw!=null">AND MEMBER_PW= #{memberPw}</if>
+	</select>
+	<select id="memberSelectData"
+		resultType="co.mini.prj.member.service.MemberVOC">
+		SELECT * FROM MEMBERDATA WHERE MEMBER_NO=#{no}
+	</select>
+	<select id="memberSelectTr"
+		resultType="co.mini.prj.member.service.MemberVOCT">
+		SELECT * FROM TRAINERDATA WHERE TRAINER_MEMBER_NO=#{no}
+	</select>
+	<select id="memberSearch"
+		resultType="co.mini.prj.member.service.MemberVO">
+		SELECT * FROM MEBER WHERE MEMBER_NO=(SELECT MEMBER_NO WHERE
+		<if test="memberId!=null">MEMBER_ID=#{memberId};</if>
+		<if test="memberName!=null">MEMBER_NAME=#{memberName};</if>
+		<if test="memberNickName!=null">MEMBER_NICKNAME=#{memberNickName};</if>
+	</select>
+	<insert id="memberInsert"
+		parameterType="co.mini.prj.member.service.MemberVO">
+		<selectKey keyProperty="memberNo" resultType="int"
+			order="BEFORE">
+			SELECT CASE
+			WHEN MAX(MEMBER_NO) IS NULL THEN 1 ELSE
+			MAX(MEMBER_NO) + 1 END AS NO FROM
+			MEMBER
+		</selectKey>
+		INSERT INTO MEMBER
+		VALUES(#{memberNo},#{memberId},#{memberPw},#{memberName},#{memberNickName},#{memberAge},#{memberTel},#{memberAuthor})
+	</insert>
+	<insert id="memberInsertData"
+		parameterType="co.mini.prj.member.service.MemberVOC">
+		INSERT INTO MEMBERDATA
+		VALUES(#{memberNo},#{memberAddress},#{memberHeight},#{memberWeight},#{memberGender})
+	</insert>
+	<insert id="memberInsertTr"
+		parameterType="co.mini.prj.member.service.MemberVOCT">
+		INSERT INTO TRAINERDATA
+		VALUES(#{memberNo},#{memberPrize},#{memberCareer},#{memberSNS},#{memberTrAttach},#{memberTrAttachDir})
+	</insert>
+	<update id="memberUpdate"
+		parameterType="co.mini.prj.member.service.MemberVO">
+		UPDATE MEMBER SET
+		MEMBER_PW=#{memberPw},MEMBER_NAME=#{memberName},MEMBER_NICKNAMe=#{memberNickName},MEMBER_AGE=#{member_age},MEMBER_TEL=#{memberTel},MEMBER_AUTHOR=#{memberAuthor}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	<update id="memberUpdateData"
+		parameterType="co.mini.prj.member.service.MemberVOC">
+		UPDATE MEMBERDATA SET
+		MEMBER_ADDRESS=#{memberAddress},
+		MEMBER_HEIGHT=#{memberHeight},
+		MEMBER_WEIGHT = #{memberWeight},
+		MEMBER_GENDER = #{memberGender}
+		WHERE
+		MEMBER_NO=#{memberNo}
+	</update>
+	<update id="memberUpdateTr"
+		parameterType="co.mini.prj.member.service.MemberVOCT">
+		UPDATE TRAINERDATA SET
+		TRAINER_PRIZE=#{memberTrPrize},
+		TRAINER_CAREER=#{memberTrCareer},
+		TRAINER_SNS = #{memberTrSNS},
+		TRAINER_ATTACH = #{memberTrAttach},
+		TRAINER_ATTACH_DIR=
+		#{memberTrAttachDir}
+		WHERE
+		TRAINER_MEMBER_NO=#{memberNo}
+	</update>
+	<update id="memberDelete"
+		parameterType="co.mini.prj.member.service.MemberVO">
+		UPDATE MEMBER SET MEMBER_AUTHOR = 'DELETED' WHERE
+		MEMBER_NO=#{memberNo}
+	</update>
+	<select id="isMemberId" resultType="boolean">
+		SELECT CASE WHEN
+		COUNT(MEMBER_NO)>0 THEN 1 ELSE 0 END
+		AS ID FROM MEMBER WHERE
+		MEMBER_ID=#{id}
+	</select>
+</mapper>

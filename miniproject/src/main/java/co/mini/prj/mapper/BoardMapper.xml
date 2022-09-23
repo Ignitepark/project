@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.mini.prj.mapper.BoardMapper">
+	<!-- 글번호 -->
+	<select id="boardSelectList"
+		resultType="co.mini.prj.board.service.BoardVO">
+
+		<if test="str=='board'">
+			select * from board where board_type = 'board'
+		</if>
+		<if test="str=='notice'">
+			select * from board where board_type = 'notice'
+		</if>
+		<if test="str==null">select * from board</if>
+
+	</select>
+	<!-- 글 작성자 -->
+	<select id="boardSelect"
+		resultType="co.mini.prj.board.service.BoardVO">
+		SELECT * FROM BOARD WHERE BOARD_WRITER = #{boardWriter}
+	</select>
+
+	<insert id="boardInsert"
+		parameterType="co.mini.prj.board.service.BoardVO">
+		<selectKey keyProperty="boardNum" resultType="int"
+			order="BEFORE">
+			SELECT CASE WHEN MAX(BOARD_NUM) IS NULL THEN 1 ELSE
+			MAX(BOARD_Num) + 1 END AS ID
+			FROM BOARD
+		</selectKey>
+		INSERT INTO BOARD
+		VALUES(#{boardNum}, #{boardWriter},
+		#{boardTitle},#{boardDate},
+		#{boardHit},#{boardContent},
+		#{boardType},#{boardAttech},
+		#{boardAttechDir})
+	</insert>
+
+	<update id="boardUpdate"
+		parameterType="co.mini.prj.board.service.BoardVO">
+		UPDATE BOARD
+		<set>
+			<if test="boardNum != null">BOARD_NUM = #{boardNum},</if>
+			<if test="boardWriter != null"> BOARD_WRITER = #{boardWriter},</if>
+			<if test="boardTitle != null"> BOARD_TITLE = #{boardTitle},</if>
+			<if test="boardDate != null"> BOARD_DATE = #{boardDate},</if>
+			<if test="boardContent != null">BOARD_CONTENT = #{boardContent}</if>
+			<if test="boardAttech != null"> BOARD_ATTECH = #{boardAttech},</if>
+			<if test="boardAttechDirectory != null"> BOARD_ATTECH_DIR= #{boardAttechDir}</if>
+		</set>
+		WHERE BOARD_WRITER = #{BOARD_WRITER}
+	</update>
+
+	<delete id="boardDelete"
+		parameterType="co.mini.prj.board.service.BoardVO">
+		DELETE FROM BOARD WHERE BOARD_WRITER = #{boardWriter}
+	</delete>
+
+	<update id="boardHitUpdate"
+		parameterType="co.mini.prj.board.service.BoardVO">
+		update board set board_hit = board_hit +1 where board_writer =
+		#{boardWriter}
+	</update>
+
+	<select id="boardSearchList"
+		resultType="co.mini.prj.board.service.BoardVO">
+		SELECT * FROM BOARD WHERE BOARD_TYPE = #{str}
+	</select>
+
+</mapper>
