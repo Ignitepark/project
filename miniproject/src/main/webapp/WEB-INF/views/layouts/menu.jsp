@@ -65,7 +65,7 @@
 					<c:if test="${author == 'ADMIN' }">
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Blog.</a>
+							aria-haspopup="true" aria-expanded="false">Blog0.</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="blog.html">Blog Grid</a></li>
 								<li><a class="dropdown-item" href="blog-sidebar.html">Blog
