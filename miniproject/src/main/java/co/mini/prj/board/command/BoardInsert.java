@@ -16,13 +16,13 @@ import co.mini.prj.board.serviceimpl.BoardServiceImpl;
 import co.mini.prj.common.Command;
 
 public class BoardInsert implements Command {
-//	private String saveFolder = "c:\\fileUploadTest"; // ���������� ������ ����
-//	private String charactSet = "utf-8"; // �ѱ۱��� ���� (���۵Ǵ� ���ڿ� ���ڵ�Ÿ��)
-//	private int maxSize = 1024 * 1024 * 1024; // ���ε��� ���� �ִ� ������
+//	private String saveFolder = "c:\\fileUploadTest"; 
+//	private String charactSet = "utf-8"; 
+//	private int maxSize = 1024 * 1024 * 1024; 
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// �������� ���
+		// 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占�
 		BoardService dao = new BoardServiceImpl();
 		BoardVO vo = new BoardVO();
 		String viewPage = "board/boardError";
@@ -57,7 +57,7 @@ public class BoardInsert implements Command {
 		if (a != 0) {
 			viewPage = "boardSelectList.do";
 		} else {
-			request.setAttribute("message", "�Խñ� ��Ͽ� �����߽��ϴ�.");
+			request.setAttribute("message", "등록 실패 !!");
 		}
 		return viewPage;
 	}

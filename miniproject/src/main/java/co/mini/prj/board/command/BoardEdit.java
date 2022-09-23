@@ -29,7 +29,7 @@ public class BoardEdit implements Command {
 			request.setAttribute("vo", vo);
 			viewPage = "board/boardSelect";
 		} else {
-			request.setAttribute("messge", "ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
+			request.setAttribute("message", "¼öÁ¤ ½ÇÆÐ");
 		}
 		
 		
