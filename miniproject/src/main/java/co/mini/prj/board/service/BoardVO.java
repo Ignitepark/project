@@ -9,13 +9,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BoardVO {
-	private int boardNum; //�۹�ȣ
-	private String boardTitle; //������
-	private String boardWriter; //�� �ۼ���
-	private String boardContent; //�� ����
-	private String boardHit; //�� ��ȸ��
-	private Date boardDate; //��¥
-	private String boardType; //�� Ÿ��
+	private int boardNum; 
+	private String boardTitle; 
+	private String boardWriter; 
+	private String boardContent; 
+	private String boardHit; 
+	private Date boardDate;
+	private String boardType; 
 	private String boardAttech;
 	private String boardAttechDir;
 }
