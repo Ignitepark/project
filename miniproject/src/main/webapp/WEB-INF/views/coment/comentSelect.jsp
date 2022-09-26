@@ -11,7 +11,7 @@
 		
 		</div>
 		<div>
-			<h1> 댓 글</h1>
+			<h1>댓 글</h1>
 		</div>
 		<div>
 			<table border="1">
@@ -20,8 +20,6 @@
 					<td width="100" align="center">${vo.comentWriter }</td>
 					<th width="100">작성일자</th>
 					<td width="100" align="center">${vo.comentDate }</td>
-					<th width="100">조회수</th>
-					<td width="100" align="center">${vo.comentHit }</td>
 				</tr>
 				<tr>
 					<th>내용</th>

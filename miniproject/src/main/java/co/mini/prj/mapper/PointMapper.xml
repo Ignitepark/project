@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.mini.prj.mapper.PointMapper">
-	<select id="pointSelectList"
-		resultType="co.mini.prj.service.PointVO">
-		SELECT *
-		FROM POINT
-		WHERE MEMBER_ID = #{memberId}
-	</select>
+   <select id="pointSelectList"
+      resultType="co.mini.prj.service.PointVO">
+      SELECT *
+      FROM POINT
+      WHERE MEMBER_NUM = #{memberNum}
+   </select>
 
-	<insert id="pointInsert"
-		parameterType="co.mini.prj.service.PointVO">
-		<selectKey keyProperty="payNum" resultType="int"
-			order="BEFORE">
-			SELECT CASE WHEN MAX(PAY_NUM) IS NULL THEN 1 ELSE MAX(PAY_NUM) + 1 END AS
-			PN FROM POINT
-		</selectKey>
-		<selectKey keyProperty="pointUse" resultType="int" order="BEFORE">
-			SELECT (PRICE*0.01) FROM PAY WHERE PAY_NUM = #{payNum}
-		</selectKey>
-		insert into point
-		VALUES(#{memberId}, #{payNum}, ((SELECT SUM(POINT_USE) FROM POINT WHERE MEMBER_ID = #{memberId})+#{pointUse}), #{pointUse})
-	</insert>
-	
+   <insert id="pointInsert"
+      parameterType="co.mini.prj.service.PointVO">
+      <selectKey keyProperty="payNum" resultType="int"
+         order="BEFORE">
+         SELECT CASE WHEN MAX(PAY_NUM) IS NULL THEN 1 ELSE MAX(PAY_NUM)
+         + 1 END AS
+         PN FROM POINT
+      </selectKey>
+   
+      insert into point
+      VALUES(#{memberId}, #{payNum}, ((SELECT
+      SUM(POINT_USE) FROM POINT WHERE MEMBER_ID = #{memberId})+SELECT
+      (PRICE*0.01) FROM PAY WHERE PAY_NUM = #{payNum}), SELECT (PRICE*0.01)
+      FROM PAY WHERE PAY_NUM = #{payNum})
+   </insert>
+
 </mapper>

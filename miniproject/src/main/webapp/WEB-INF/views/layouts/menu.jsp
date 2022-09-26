@@ -30,7 +30,7 @@
 		<div class="container-fluid">
 			<a class="navbar-brand" href="index.html">
 				<h2 class="text-white text-capitalize">
-					</i>Gym<span class="text-color">ate</span>
+					</i>YD<span class="text-color">Gym</span>
 				</h2>
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -57,7 +57,7 @@
 						aria-haspopup="true" aria-expanded="false">Board</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="about.html">Notice</a></li>
-							<li><a class="dropdown-item" href="trainer.html">Free</a></li>
+							<li><a class="dropdown-item" href="comentSelectList.do">Free</a></li>
 							<li><a class="dropdown-item" href="course.html">A/S</a></li>
 						</ul></li>
 

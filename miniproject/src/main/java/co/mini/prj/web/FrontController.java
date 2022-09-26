@@ -19,6 +19,13 @@ import co.mini.prj.board.command.BoardInsert;
 import co.mini.prj.board.command.BoardSelect;
 import co.mini.prj.board.command.BoardSelectList;
 import co.mini.prj.board.command.BoardWriteForm;
+import co.mini.prj.coment.command.ComentDelete;
+import co.mini.prj.coment.command.ComentEdit;
+import co.mini.prj.coment.command.ComentEditForm;
+import co.mini.prj.coment.command.ComentInsert;
+import co.mini.prj.coment.command.ComentSelect;
+import co.mini.prj.coment.command.ComentSelectList;
+import co.mini.prj.coment.command.ComentWriteForm;
 import co.mini.prj.common.Command;
 import co.mini.prj.mark.command.InsertMark;
 import co.mini.prj.mark.command.InsertMarkForm;
@@ -51,9 +58,9 @@ public class FrontController extends HttpServlet {
 	}
 
 	public void init(ServletConfig config) throws ServletException {
-		// 명령집단 저장
+		// 紐낅졊吏묐떒 ���옣
 
-		// 다슬
+		// �떎�뒳
 		map.put("/main.do", new MainCommand());
 		map.put("/productSelectList.do", new ProductSelectList());
 		map.put("/productSelect.do", new ProductSelect());
@@ -62,7 +69,7 @@ public class FrontController extends HttpServlet {
 		map.put("/productDelete.do", new ProductDelete());
 		map.put("/trainerSelect.do", new TrainerSelect());
 
-		// 순탁
+		// 게시판
 		map.put("/boardSelectList.do", new BoardSelectList());
 		map.put("/boardWriteForm.do", new BoardWriteForm());
 		map.put("/boardInsert.do", new BoardInsert());
@@ -70,18 +77,27 @@ public class FrontController extends HttpServlet {
 		map.put("/boardEditForm.do", new BoardEditForm());
 		map.put("/boardEdit.do", new BoardEdit());
 		map.put("/boardDelete.do", new BoardDelete());
+		
+		//댓글
+		map.put("/comentSelectList.do", new ComentSelectList());
+		map.put("/comentWriteForm.do", new ComentWriteForm());
+		map.put("/comentInsert.do", new ComentInsert());
+		map.put("/comentSelect.do", new ComentSelect());
+		map.put("/comentEditForm.do", new ComentEditForm());
+		map.put("/comentEdit.do", new ComentEdit());
+		map.put("/comentDelete.do", new ComentDelete());
+		
+		// �냼�엺
+		map.put("/insertMarkForm.do", new InsertMarkForm()); // �룊媛� �엯�젰�뤌
+		map.put("/insertMark.do", new InsertMark()); // �룊媛��엯�젰
 
-		// 소람
-		map.put("/insertMarkForm.do", new InsertMarkForm()); // 평가 입력폼
-		map.put("/insertMark.do", new InsertMark()); // 평가입력
-
-		// 정욱
+		// �젙�슧
 		map.put("/memberLogin.do", new MemberLogin());
 		map.put("/memberInsert.do", new MemberInsert());
 		map.put("/memberInsertForm.do", new MemberInsertForm());
 		map.put("/ajaxMemberIdCheck.do", new AjaxMemberIdCheck());
 
-		// 승현
+		// �듅�쁽
 		map.put("/paySelectList.do", new PaySelectList());
 		map.put("/paySelect.do", new PaySelect());
 		map.put("/payInsert.do", new PayInsert());
@@ -94,7 +110,7 @@ public class FrontController extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 실제 수행할 서비스
+		// �떎�젣 �닔�뻾�븷 �꽌鍮꾩뒪
 		request.setCharacterEncoding("utf-8");
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();
@@ -105,7 +121,7 @@ public class FrontController extends HttpServlet {
 
 		if (!viewPage.endsWith(".do")) {
 			if (viewPage.startsWith("ajax:")) { // Ajax
-				// response 객체가 가진 컨텐츠 타입을 바꿔줘라
+				// response 媛앹껜媛� 媛�吏� 而⑦뀗痢� ���엯�쓣 諛붽퓭以섎씪
 				response.setContentType("text/html; charset=UTF-8");
 				response.getWriter().append(viewPage.substring(5));
 				return;
@@ -117,14 +133,14 @@ public class FrontController extends HttpServlet {
 					viewPage = "/WEB-INF/views/" + viewPage.substring(3) + ".jsp";
 				} else {
 					viewPage = viewPage + ".tiles"; // tiles O
-					// 어디로 가라고 돌려주는 거
+					// �뼱�뵒濡� 媛��씪怨� �룎�젮二쇰뒗 嫄�
 					RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 					dispatcher.forward(request, response);
 				}
 			}
 		} else {
-			// 권한 위임
-			response.sendRedirect(viewPage); // .do return시
+			// 沅뚰븳 �쐞�엫
+			response.sendRedirect(viewPage); // .do return�떆
 		}
 	}
 

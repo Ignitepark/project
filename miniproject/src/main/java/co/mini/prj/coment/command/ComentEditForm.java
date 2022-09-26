@@ -18,7 +18,7 @@ public class ComentEditForm implements Command {
 		
 		ComentService dao = new ComentServiceImpl();
 		ComentVO vo = new ComentVO();
-		vo.setComentConum(Integer.valueOf(request.getParameter("num")));
+		vo.setComentConum(Integer.valueOf(request.getParameter("coment_conum")));
 		vo = dao.comentSelect(vo);
 		request.setAttribute("vo", vo);
 	

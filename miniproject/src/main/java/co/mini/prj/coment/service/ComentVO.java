@@ -11,7 +11,7 @@ import lombok.Setter;
 public class ComentVO {
 	private int comentNum;
 	private int comentConum;
-	private String comentContnet;
+	private String comentContent;
 	private String comentWriter;
 	private Date comentDate;
 	private String comentType;

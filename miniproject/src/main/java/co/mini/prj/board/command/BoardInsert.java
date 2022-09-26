@@ -22,7 +22,7 @@ public class BoardInsert implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占�
+		
 		BoardService dao = new BoardServiceImpl();
 		BoardVO vo = new BoardVO();
 		String viewPage = "board/boardError";
