@@ -12,10 +12,11 @@ import co.mini.prj.mapper.BoardMapper;
 public class BoardServiceImpl implements BoardService {
 	private SqlSession sqlSession = DataSource.getInstance().openSession(true);
 	private BoardMapper map = sqlSession.getMapper(BoardMapper.class);
+
 	@Override
-	public List<BoardVO> boardSelectList(String str) {
+	public List<BoardVO> boardSelectList(String str, String searchMenu, String searchVal) {
 		// TODO Auto-generated method stub
-		return map.boardSelectList(str);
+		return map.boardSelectList(str, searchMenu, searchVal);
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void boardHitUpdate(int num) {
 		// TODO Auto-generated method stub
-		
+		map.boardHitUpdate(num);
 	}
 
 	@Override

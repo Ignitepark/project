@@ -9,8 +9,7 @@
 </head>
 <body>
 	<div align="center">
-		
-		</div>
+		<br> <br> <br> <br> <br> <br>
 		<div>
 			<h1>게시글 상세보기</h1>
 		</div>
@@ -26,19 +25,17 @@
 				</tr>
 				<tr>
 					<th>제목</th>
-					<td colspan="5">${vo.noticeTitle }</td>
+					<td colspan="5">${vo.boardTitle }</td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td colspan="5">
-						<textarea rows="10" cols="80">${vo.boardContent }</textarea>
+					<td colspan="5"><textarea rows="10" cols="80">${vo.boardContent }</textarea>
 					</td>
 				</tr>
 				<tr>
 					<th>첨부파일</th>
-					<td colspan="5">${vo.noticeAttech }</td>
+					<td colspan="5">${vo.boardAttach }</td>
 				</tr>
-
 			</table>
 		</div>
 		<br>
@@ -47,7 +44,7 @@
 				<button type="button" onclick="subCall('E')">수정</button>&nbsp;&nbsp;
 		<button type="button" onclick="subCall('D')">삭제</button>&nbsp;&nbsp;
 		</c:if>
-			<button type="button" onclick="location.href='boardSelect.do'">목록</button>
+			<button type="button" onclick="location.href='boardSelectList.do'">목록</button>
 		</div>
 		<div>
 			<form id="frm" method="post">
@@ -57,16 +54,16 @@
 	</div>
 	<script type="text/javascript">
 		function subCall(str) {
-			if(str == 'E') {
+			if (str == 'E') {
 				frm.action = "boardEditForm.do"; //수정
 			} else {
 				frm.action = "boardDelete.do"; //삭제
 			}
-			
+
 			frm.submit();
 		}
 	</script>
-	
-	
+
+
 </body>
 </html>

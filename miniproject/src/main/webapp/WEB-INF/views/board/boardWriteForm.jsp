@@ -12,6 +12,9 @@
 
 		<div>
 			<h1>공지사항 등록</h1>
+			<br>
+			<br>
+			<br>
 		</div>
 		<form id="frm" action="boardInsert.do" method="post">
 			<div>
@@ -43,7 +46,8 @@
 			</div>
 			<br>
 			<div>
-				<input type="submit" value="등록">&nbsp;&nbsp;&nbsp; <input
+				<input type="hidden" name="boardType" value="NOTICE"> <input
+					type="submit" value="등록">&nbsp;&nbsp;&nbsp; <input
 					type="reset" value="취소">&nbsp;&nbsp;&nbsp; <input
 					type="button" value="목록"
 					onclick="location.href='boardSelectList.do'">&nbsp;&nbsp;&nbsp;

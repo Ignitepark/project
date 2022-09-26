@@ -8,23 +8,22 @@ import co.mini.prj.board.service.BoardVO;
 import co.mini.prj.board.serviceimpl.BoardServiceImpl;
 import co.mini.prj.common.Command;
 
-
 public class BoardSelect implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// �������� �󼼺���
 		BoardService dao = new BoardServiceImpl();
 		BoardVO vo = new BoardVO();
-		vo.setBoardNum(Integer.valueOf(request.getParameter("num")));
-		
+		int num = Integer.valueOf(request.getParameter("id"));
+		vo.setBoardNum(num);
+		dao.boardHitUpdate(vo.getBoardNum());
+
 		vo = dao.boardSelect(vo);
-		
-		if(vo != null) {
-			dao.boardHitUpdate(vo.getBoardNum());
+
+		if (vo != null) {
 			request.setAttribute("vo", vo);
 		}
 		return "board/boardSelect";
-}
+	}
 
 }

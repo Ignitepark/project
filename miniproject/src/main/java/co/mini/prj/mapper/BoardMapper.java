@@ -7,15 +7,19 @@ import org.apache.ibatis.annotations.Param;
 import co.mini.prj.board.service.BoardVO;
 
 public interface BoardMapper {
-	List<BoardVO> boardSelectList(String str);
+	List<BoardVO> boardSelectList(@Param("str") String str, @Param("searchMenu") String searchMenu,
+			@Param("searchVal") String searchVal);
+
 	BoardVO boardSelect(BoardVO vo);
+
 	int boardInsert(BoardVO vo);
+
 	int boardUpdate(BoardVO vo);
+
 	int boardDelete(BoardVO vo);
-	
-	void boardHitUpdate(int id);
-	
-	List<BoardVO> boardSearchList(@Param("key") String key,@Param("val") String val);
-	
+
+	void boardHitUpdate(int num);
+
+	List<BoardVO> boardSearchList(@Param("key") String key, @Param("val") String val);
 
 }

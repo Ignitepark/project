@@ -47,17 +47,14 @@ public class BoardInsert implements Command {
 		vo.setBoardDate(Date.valueOf(request.getParameter("boardDate")));
 		vo.setBoardTitle(request.getParameter("boardTitle"));
 		vo.setBoardContent(request.getParameter("boardContent"));
-		
-		
-		
-		
+		vo.setBoardType(request.getParameter("boardType"));
+
 		int a = dao.boardInsert(vo);
-		
 
 		if (a != 0) {
 			viewPage = "boardSelectList.do";
 		} else {
-			request.setAttribute("message", "�Խñ� ��Ͽ� �����߽��ϴ�.");
+			request.setAttribute("message", "입력에 실패.");
 		}
 		return viewPage;
 	}

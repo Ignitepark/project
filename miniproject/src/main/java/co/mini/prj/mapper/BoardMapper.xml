@@ -4,20 +4,24 @@
 	<!-- 글번호 -->
 	<select id="boardSelectList"
 		resultType="co.mini.prj.board.service.BoardVO">
-
-		<if test="str=='board'">
-			select * from board where board_type = 'board'
+		SELECT * FROM BOARD
+		<if test="str=='FREE'">
+			WHERE BOARD_TYPE = 'FREE'
 		</if>
-		<if test="str=='notice'">
-			select * from board where board_type = 'notice'
+		<if test="str=='NOTICE'">
+			WHERE BOARD_TYPE = 'NOTICE'
+			<if test="searchMenu!='MENU'">
+				<if test="searchMenu=='TITLE'"> AND BOARD_TITLE LIKE '%'||#{searchVal}||'%' </if>
+				<if test="searchMenu=='WRITER'"> AND BOARD_WRITER LIKE '%'||#{searchVal}||'%'</if>
+				<if test="searchMenu=='CONTENT'"> AND BOARD_CONTENT LIKE '%'||#{searchVal}||'%'</if>
+			</if>
 		</if>
-		<if test="str==null">select * from board</if>
-
+		ORDER BY BOARD_NUM DESC
 	</select>
 	<!-- 글 작성자 -->
 	<select id="boardSelect"
 		resultType="co.mini.prj.board.service.BoardVO">
-		SELECT * FROM BOARD WHERE BOARD_WRITER = #{boardWriter}
+		SELECT * FROM BOARD WHERE BOARD_NUM = #{boardNum}
 	</select>
 
 	<insert id="boardInsert"
@@ -32,8 +36,8 @@
 		VALUES(#{boardNum}, #{boardWriter},
 		#{boardTitle},#{boardDate},
 		#{boardHit},#{boardContent},
-		#{boardType},#{boardAttech},
-		#{boardAttechDir})
+		#{boardType},#{boardAttach},
+		#{boardAttachDir})
 	</insert>
 
 	<update id="boardUpdate"
@@ -45,8 +49,8 @@
 			<if test="boardTitle != null"> BOARD_TITLE = #{boardTitle},</if>
 			<if test="boardDate != null"> BOARD_DATE = #{boardDate},</if>
 			<if test="boardContent != null">BOARD_CONTENT = #{boardContent}</if>
-			<if test="boardAttech != null"> BOARD_ATTECH = #{boardAttech},</if>
-			<if test="boardAttechDirectory != null"> BOARD_ATTECH_DIR= #{boardAttechDir}</if>
+			<if test="boardAttach != null"> BOARD_Attach = #{boardAttach},</if>
+			<if test="boardAttachDirectory != null"> BOARD_Attach_DIR= #{boardAttachDir}</if>
 		</set>
 		WHERE BOARD_WRITER = #{BOARD_WRITER}
 	</update>
@@ -58,13 +62,10 @@
 
 	<update id="boardHitUpdate"
 		parameterType="co.mini.prj.board.service.BoardVO">
-		update board set board_hit = board_hit +1 where board_writer =
-		#{boardWriter}
+		UPDATE BOARD SET BOARD_HIT = BOARD_HIT +1 WHERE
+		BOARD_NUM =
+		#{num}
 	</update>
 
-	<select id="boardSearchList"
-		resultType="co.mini.prj.board.service.BoardVO">
-		SELECT * FROM BOARD WHERE BOARD_TYPE = #{str}
-	</select>
 
 </mapper>

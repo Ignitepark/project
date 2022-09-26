@@ -28,7 +28,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navigation fixed-top" id="navbar">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="index.html">
+			<a class="navbar-brand" href="main.do">
 				<h2 class="text-white text-capitalize">
 					</i>Gym<span class="text-color">ate</span>
 				</h2>
@@ -40,9 +40,9 @@
 			</button>
 			<div class="collapse text-center navbar-collapse" id="navbarsid">
 				<ul class="navbar-nav mx-auto">
-					<li class="nav-item active"><a class="nav-link"
-						href="index.html">Home <span class="sr-only">(current)</span></a>
-					</li>
+					<li class="nav-item active"><a class="nav-link" href="main.do">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Menu</a>
@@ -56,8 +56,24 @@
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Board</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="about.html">Notice</a></li>
-							<li><a class="dropdown-item" href="trainer.html">Free</a></li>
+							<li>
+								<form id="noticefrm" action="boardSelectList.do">
+									<input type="hidden" name="str" value="NOTICE"> <input
+										type="hidden" name="pageNum" value="1"> <input
+										type="hidden" name="pageAmount" value="20"><a
+										class="dropdown-item" href="#" onclick="noticefrm.submit()">공지사항
+									</a>
+								</form>
+							</li>
+							<li>
+								<form id="freefrm" action="boardSelectList.do">
+									<input type="hidden" name="str" value="FREE"> <input
+										type="hidden" name="pageNum" value="1"> <input
+										type="hidden" name="pageAmount" value="20"><a
+										class="dropdown-item" href="#" onclick="freefrm.submit()">자유게시판
+									</a>
+								</form>
+							</li>
 							<li><a class="dropdown-item" href="course.html">A/S</a></li>
 						</ul></li>
 
