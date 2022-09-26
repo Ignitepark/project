@@ -19,6 +19,13 @@ import co.mini.prj.board.command.BoardInsert;
 import co.mini.prj.board.command.BoardSelect;
 import co.mini.prj.board.command.BoardSelectList;
 import co.mini.prj.board.command.BoardWriteForm;
+import co.mini.prj.coment.command.ComentDelete;
+import co.mini.prj.coment.command.ComentEdit;
+import co.mini.prj.coment.command.ComentEditForm;
+import co.mini.prj.coment.command.ComentInsert;
+import co.mini.prj.coment.command.ComentSelect;
+import co.mini.prj.coment.command.ComentSelectList;
+import co.mini.prj.coment.command.ComentWriteForm;
 import co.mini.prj.common.Command;
 import co.mini.prj.mark.command.InsertMark;
 import co.mini.prj.mark.command.InsertMarkForm;
@@ -61,6 +68,7 @@ public class FrontController extends HttpServlet {
 		map.put("/trainerSelect.do", new TrainerSelect());
 
 		// 남순탁
+		// 게시판
 		map.put("/boardSelectList.do", new BoardSelectList());
 		map.put("/boardWriteForm.do", new BoardWriteForm());
 		map.put("/boardInsert.do", new BoardInsert());
@@ -69,11 +77,25 @@ public class FrontController extends HttpServlet {
 		map.put("/boardEdit.do", new BoardEdit());
 		map.put("/boardDelete.do", new BoardDelete());
 
+		// 댓글
+		map.put("/comentSelectList.do", new ComentSelectList());
+		map.put("/comentWriteForm.do", new ComentWriteForm());
+		map.put("/comentInsert.do", new ComentInsert());
+		map.put("/comentSelect.do", new ComentSelect());
+		map.put("/comentEditForm.do", new ComentEditForm());
+		map.put("/comentEdit.do", new ComentEdit());
+		map.put("/comentDelete.do", new ComentDelete());
+
+		// �냼�엺
+		map.put("/insertMarkForm.do", new InsertMarkForm()); // �룊媛� �엯�젰�뤌
+		map.put("/insertMark.do", new InsertMark()); // �룊媛��엯�젰
+
 		// 도소람
 		map.put("/insertMarkForm.do", new InsertMarkForm());
 		map.put("/insertMark.do", new InsertMark());
 
 		// 진정욱
+		// �젙�슧
 		map.put("/memberLogin.do", new MemberLogin());
 		map.put("/memberInsert.do", new MemberInsert());
 		map.put("/memberInsertForm.do", new MemberInsertForm());

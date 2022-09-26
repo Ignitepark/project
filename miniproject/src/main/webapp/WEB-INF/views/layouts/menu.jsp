@@ -30,7 +30,7 @@
 		<div class="container-fluid">
 			<a class="navbar-brand" href="main.do">
 				<h2 class="text-white text-capitalize">
-					</i>Gym<span class="text-color">ate</span>
+					</i>YD<span class="text-color">Gym</span>
 				</h2>
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -74,14 +74,13 @@
 									</a>
 								</form>
 							</li>
-							<li><a class="dropdown-item" href="course.html">A/S</a></li>
 						</ul></li>
 
 					<!-- ADMIN 관리 메뉴 -->
 					<c:if test="${author == 'ADMIN' }">
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Blog.</a>
+							aria-haspopup="true" aria-expanded="false">Blog</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="blog.html">Blog Grid</a></li>
 								<li><a class="dropdown-item" href="blog-sidebar.html">Blog

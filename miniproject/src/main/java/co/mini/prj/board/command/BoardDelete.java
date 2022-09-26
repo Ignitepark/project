@@ -12,7 +12,7 @@ public class BoardDelete implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// ï¿½ï¿½ï¿½ï¿½
+		
 		BoardService dao = new BoardServiceImpl();
 		BoardVO vo = new BoardVO();
 		vo.setBoardNum(Integer.valueOf(request.getParameter("num")));
@@ -23,7 +23,7 @@ public class BoardDelete implements Command {
 		if(result != 0) {
 			viewPage = "boardSelectList.do";
 		} else {
-			request.setAttribute("message", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+			request.setAttribute("message", "»èÁ¦ ½ÇÆÐ!!");
 		}
 		
 		return viewPage;

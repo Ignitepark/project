@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.mini.prj.mapper.ComentMapper">
+	<!-- 댓글 번호 -->
+	<select id="comentSelectList"
+		resultType="co.mini.prj.coment.service.ComentVO">
+		SELECT * FROM COMENT
+	</select>
+
+	<select id="comentSelect"
+		resultType="co.mini.prj.coment.service.ComentVO">
+		SELECT * FROM COMENT WHERE COMENT_WRITER = #{comentWriter}
+	</select>
+
+	<insert id="ComentInsert"
+		parameterType="co.mini.prj.coment.service.ComentVO">
+		INSERT INTO COMENT VALUES
+		(#{comentNum},#{comentConum},
+		#{comentContent},#{comentWriter},
+		#{comentDate},#{comentType})
+	</insert>
+
+	<update id="ComentUpdate"
+		parameterType="co.mini.prj.coment.service.ComentVO">
+		<set>
+			<if test="comentNum != null">COMENT_CONUM = #{comentConum},</if>
+			<if test="comentWriter != null"> COMENT_WRITER = #{comentWriter},</if>
+			<if test="comnetDate != null"> COMENT_DATE = #{comentDate},</if>
+			<if test="comentContent != null">COMENT_CONTENT = #{comentContent}</if>
+		</set>
+		WHERE COMENT_WRITER = #{COMENT_WRITER}
+	</update>
+
+	<delete id="ComentDelete"
+		parameterType="co.mini.prj.coment.service.ComentVO">
+		DELETE FROM COMENT WHERE COMENT_WRITER = #{comentWriter}
+	</delete>
+
+	<select id="comentSearchList"
+		resultType="co.mini.prj.coment.service.ComentVO">
+		SELECT * FROM COMENT WHERE COMENT_TYPE = #{str}
+	</select>
+</mapper>

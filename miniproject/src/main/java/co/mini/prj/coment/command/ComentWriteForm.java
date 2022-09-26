@@ -1,16 +1,16 @@
-package co.mini.prj.board.command;
+package co.mini.prj.coment.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.mini.prj.common.Command;
 
-public class BoardWriteForm implements Command {
+public class ComentWriteForm implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		
-		return "board/boardWriteForm";
+		return "coment/comentWriteForm";
 	}
 
 }
