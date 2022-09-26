@@ -20,7 +20,7 @@ public class ComentEdit implements Command {
 		vo.setComentConum(Integer.valueOf(request.getParameter("comentConum")));
 		vo.setComentDate(Date.valueOf(request.getParameter("comentDate")));
 		vo.setComentNum(Integer.valueOf(request.getParameter("comentNum")));
-		vo.setComentContnet(request.getParameter("comentContent"));
+		vo.setComentContent(request.getParameter("comentContent"));
 		
 		String viewPage = "coment/comentError";
 		

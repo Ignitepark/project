@@ -19,11 +19,6 @@
                   <tr>
                      <th width=100>작성자</th>
                      <td width=100>${vo.comentWriter }</td>
-                     <th width=100>작성일자</th>
-                     <td width=100><input type="date" id="comentDate"
-                        name="comentDate" value=${vo.comentDate }></td>
-                     <th width=100>조회수</th>
-                     <td width=100>${vo.comentHit }</td>
                   </tr>
                   <tr>
                      <th>내용</th>
@@ -34,7 +29,6 @@
                </table>
             </div><br>
             <div>
-               <input type="hidden" id="comentNum" name="comentNum" value="${vo.comentNum }">
                <input type="submit"value="수정">
                 <input type="button" onclick="location.href='comentSelectList.do'" value="취소">
             </div>

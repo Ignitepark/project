@@ -14,7 +14,7 @@ public class BoardEdit implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// ����
+		
 		BoardService dao = new BoardServiceImpl();
 		BoardVO vo = new BoardVO();
 		vo.setBoardNum(Integer.valueOf(request.getParameter("boardNum")));

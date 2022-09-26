@@ -9,7 +9,7 @@ public interface BoardService {
 	int boardUpdate(BoardVO vo);
 	int boardDelete(BoardVO vo);
 	
-	void boardHitUpdate(int num);  // �Խñ� ��ȸ�� �ø��°� 
+	void boardHitUpdate(int num);  
 	// 
-	List<BoardVO> boardSearchList(String key, String val); // �Խñ� �˻�
+	List<BoardVO> boardSearchList(String key, String val); 
 }
