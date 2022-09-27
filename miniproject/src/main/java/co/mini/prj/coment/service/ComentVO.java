@@ -1,6 +1,5 @@
 package co.mini.prj.coment.service;
 
-
 import java.sql.Date;
 
 import lombok.Getter;
@@ -15,4 +14,5 @@ public class ComentVO {
 	private String comentWriter;
 	private Date comentDate;
 	private String comentType;
+	private int boardNum;
 }

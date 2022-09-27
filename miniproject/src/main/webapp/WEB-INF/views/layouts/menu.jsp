@@ -58,19 +58,11 @@
 						<ul class="dropdown-menu">
 							<li>
 								<form id="noticefrm" action="boardSelectList.do">
-									<input type="hidden" name="str" value="NOTICE"> <input
+									<input type="hidden" name="searchMenu" value="MENU">
+									<input type="hidden" name="search" value=""> <input
 										type="hidden" name="pageNum" value="1"> <input
 										type="hidden" name="pageAmount" value="20"><a
 										class="dropdown-item" href="#" onclick="noticefrm.submit()">공지사항
-									</a>
-								</form>
-							</li>
-							<li>
-								<form id="freefrm" action="boardSelectList.do">
-									<input type="hidden" name="str" value="FREE"> <input
-										type="hidden" name="pageNum" value="1"> <input
-										type="hidden" name="pageAmount" value="20"><a
-										class="dropdown-item" href="#" onclick="freefrm.submit()">자유게시판
 									</a>
 								</form>
 							</li>

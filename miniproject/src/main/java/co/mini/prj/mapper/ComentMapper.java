@@ -7,13 +7,18 @@ import org.apache.ibatis.annotations.Param;
 import co.mini.prj.coment.service.ComentVO;
 
 public interface ComentMapper {
-	List<ComentVO> comentSelectList(String str);
+	List<ComentVO> comentSelectList(@Param("num") int num, @Param("str") String str);
+
 	ComentVO comentSelect(ComentVO vo);
+
 	int ComentInsert(ComentVO vo);
+
+	int CocomentInsert(ComentVO vo);
+
 	int ComentUpdate(ComentVO vo);
+
 	int ComentDelete(ComentVO vo);
-	
+
 	void ComentHitUpdate(int num);
-	List<ComentVO> comentSearchList(@Param("key") String key,@Param("val") String val);
-	
+
 }

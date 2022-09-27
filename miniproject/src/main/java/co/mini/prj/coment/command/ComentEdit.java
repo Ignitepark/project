@@ -5,7 +5,6 @@ import java.sql.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import co.mini.prj.coment.service.ComentService;
 import co.mini.prj.coment.service.ComentVO;
 import co.mini.prj.coment.serviceimpl.ComentServiceImpl;
@@ -21,18 +20,18 @@ public class ComentEdit implements Command {
 		vo.setComentDate(Date.valueOf(request.getParameter("comentDate")));
 		vo.setComentNum(Integer.valueOf(request.getParameter("comentNum")));
 		vo.setComentContent(request.getParameter("comentContent"));
-		
+
 		String viewPage = "coment/comentError";
-		
+
 		int a = dao.ComentUpdate(vo);
-		if(a != 0) {
+		if (a != 0) {
 			vo = dao.comentSelect(vo);
 			request.setAttribute("vo", vo);
 			viewPage = "coment/comentSelect";
 		} else {
-			request.setAttribute("message", "¼öÁ¤½ÇÆÐ");
+			request.setAttribute("message", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}
-		
+
 		return viewPage;
 	}
 

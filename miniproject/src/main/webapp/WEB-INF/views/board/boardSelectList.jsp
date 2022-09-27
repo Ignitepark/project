@@ -270,6 +270,10 @@ td {
 td:hover {
 	overflow: visible;
 }
+
+.notice {
+	font-weight: bolder;
+}
 </style>
 </head>
 <body></body>
@@ -338,6 +342,21 @@ td:hover {
 								<td colspan="6">게시글이 존재하지 않습니다.</td>
 							</tr>
 						</c:if>
+						<c:if test="${not empty noticeList }">
+							<c:forEach items="${noticeList }" var="n">
+								<tr class="notice">
+									<td>${n.boardNum}</td>
+									<td><a href="#!" onclick="selectBoard('${n.boardNum}')">${n.boardTitle}</a></td>
+									<td>${n.boardWriter}</td>
+									<td>${n.boardAttach}</td>
+									<td>${n.boardDate}</td>
+									<td>${n.boardHit}</td>
+								</tr>
+							</c:forEach>
+						</c:if>
+						<tr>
+							<td colspan="6"></td>
+						</tr>
 						<c:if test="${not empty list}">
 							<c:forEach items="${list}" var="board">
 								<tr>
@@ -348,6 +367,8 @@ td:hover {
 									<td>${board.boardAttach}</td>
 									<td>${board.boardDate}</td>
 									<td>${board.boardHit}</td>
+									<input type="hidden" class="boardType"
+										value="${board.boardType }">
 								</tr>
 							</c:forEach>
 						</c:if>
@@ -392,6 +413,16 @@ td:hover {
 		document.getElementById("pageAmount").value = document
 				.getElementById("pageAmountList").value
 		document.getElementById("selectPageAmount").submit();
+	}
+	window.onload = function() {
+
+		let type = document.getElementsByClassName("boardType");
+		for (var i = 0; i < type.length; i++) {
+			var tp = type.item(i);
+			if (tp.value == "NOTICE") {
+				tp.parentElement.className = "notice";
+			}
+		}
 	}
 
 	//

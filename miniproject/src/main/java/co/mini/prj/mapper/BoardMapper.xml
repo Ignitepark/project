@@ -5,16 +5,13 @@
 	<select id="boardSelectList"
 		resultType="co.mini.prj.board.service.BoardVO">
 		SELECT * FROM BOARD
-		<if test="str=='FREE'">
-			WHERE BOARD_TYPE = 'FREE'
-		</if>
 		<if test="str=='NOTICE'">
 			WHERE BOARD_TYPE = 'NOTICE'
-			<if test="searchMenu!='MENU'">
-				<if test="searchMenu=='TITLE'"> AND BOARD_TITLE LIKE '%'||#{searchVal}||'%' </if>
-				<if test="searchMenu=='WRITER'"> AND BOARD_WRITER LIKE '%'||#{searchVal}||'%'</if>
-				<if test="searchMenu=='CONTENT'"> AND BOARD_CONTENT LIKE '%'||#{searchVal}||'%'</if>
-			</if>
+		</if>
+		<if test="searchMenu!='MENU'">
+			<if test="searchMenu=='TITLE'"> WHERE BOARD_TITLE LIKE '%'||#{searchVal}||'%' </if>
+			<if test="searchMenu=='WRITER'"> WHERE BOARD_WRITER LIKE '%'||#{searchVal}||'%'</if>
+			<if test="searchMenu=='CONTENT'"> WHERE BOARD_CONTENT LIKE '%'||#{searchVal}||'%'</if>
 		</if>
 		ORDER BY BOARD_NUM DESC
 	</select>
@@ -66,6 +63,28 @@
 		BOARD_NUM =
 		#{num}
 	</update>
+
+	<select id="boardGoodExist" resultType="int">
+		SELECT
+		<if test="memberNum==0"> COUNT(MEMBER_NUM) FROM BOARDGOOD WHERE
+			BOARD_NUM=#{boardNum}
+		</if>
+		<if test="memberNum != 0">CASE WHEN COUNT(MEMBER_NUM)>0 THEN 1 ELSE 0 END AS ISGOOD
+			FROM BOARDGOOD
+			WHERE BOARD_NUM=#{boardNum} AND MEMBER_NUM=#{memberNum}
+		</if>
+	</select>
+
+	<insert id="boardGoodInsert">
+		INSERT INTO BOARDGOOD
+		VALUES(#{memberNum},#{boardNum})
+	</insert>
+
+	<delete id="boardGoodDelete">
+		DELETE FROM BOARDGOOD WHERE MEMBER_NUM=#{memberNum}
+		AND
+		BOARD_NUM=#{boardNum}
+	</delete>
 
 
 </mapper>

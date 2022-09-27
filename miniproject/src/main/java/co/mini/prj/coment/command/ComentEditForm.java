@@ -15,13 +15,13 @@ public class ComentEditForm implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		ComentService dao = new ComentServiceImpl();
 		ComentVO vo = new ComentVO();
 		vo.setComentConum(Integer.valueOf(request.getParameter("coment_conum")));
 		vo = dao.comentSelect(vo);
 		request.setAttribute("vo", vo);
-	
+
 		return "coment/comentEditForm";
 	}
 

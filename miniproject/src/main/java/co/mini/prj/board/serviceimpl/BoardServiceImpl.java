@@ -55,4 +55,22 @@ public class BoardServiceImpl implements BoardService {
 		return map.boardSearchList(key, val);
 	}
 
+	@Override
+	public int boardGoodInsert(int boardNum, int memberNum) {
+		// TODO Auto-generated method stub
+		return map.boardGoodInsert(boardNum, memberNum);
+	}
+
+	@Override
+	public int boardGoodDelete(int boardNum, int memberNum) {
+		// TODO Auto-generated method stub
+		return map.boardGoodDelete(boardNum, memberNum);
+	}
+
+	@Override
+	public int boardGoodExist(int boardNum, int memberNum) {
+		// TODO Auto-generated method stub
+		return map.boardGoodExist(boardNum, memberNum);
+	}
+
 }

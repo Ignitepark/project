@@ -1,6 +1,5 @@
 package co.mini.prj.coment.serviceimpl;
 
-
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,10 +12,11 @@ import co.mini.prj.mapper.ComentMapper;
 public class ComentServiceImpl implements ComentService {
 	private SqlSession sqlSession = DataSource.getInstance().openSession(true);
 	private ComentMapper map = sqlSession.getMapper(ComentMapper.class);
+
 	@Override
-	public List<ComentVO> comentSelectList(String str) {
+	public List<ComentVO> comentSelectList(int num, String str) {
 		// TODO Auto-generated method stub
-		return map.comentSelectList(str);
+		return map.comentSelectList(num, str);
 	}
 
 	@Override
@@ -50,9 +50,9 @@ public class ComentServiceImpl implements ComentService {
 	}
 
 	@Override
-	public List<ComentVO> comentSearchList(String key, String val) {
+	public int CocomentInsert(ComentVO vo) {
 		// TODO Auto-generated method stub
-		return map.comentSearchList(key, val);
+		return map.CocomentInsert(vo);
 	}
 
 }

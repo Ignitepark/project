@@ -20,6 +20,12 @@ public interface BoardMapper {
 
 	void boardHitUpdate(int num);
 
+	int boardGoodExist(@Param("boardNum") int boardNum, @Param("memberNum") int memberNum);
+
+	int boardGoodInsert(@Param("boardNum") int boardNum, @Param("memberNum") int memberNum);
+
+	int boardGoodDelete(@Param("boardNum") int boardNum, @Param("memberNum") int memberNum);
+
 	List<BoardVO> boardSearchList(@Param("key") String key, @Param("val") String val);
 
 }

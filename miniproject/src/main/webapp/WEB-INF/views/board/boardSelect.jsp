@@ -6,6 +6,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+input {
+	width: 90%;
+	height: 26px;
+	border: 0px;
+}
+
+.ti-apple {
+	color: red;
+}
+
+.default {
+	background-color: blue;
+}
+
+.good {
+	background-color: black;
+}
+
+button {
+	border: 0px;
+	background-color: white;
+}
+
+th {
+	text-align: center;
+}
+</style>
 </head>
 <body>
 	<div align="center">
@@ -33,12 +61,78 @@
 					</td>
 				</tr>
 				<tr>
+					<th><c:if test="${isGood eq 0 }">
+							<a href="boardGoodInsert.do"> <i class="ti-apple default"></i></a>
+						</c:if> <c:if test="${isGood eq 1 }">
+							<a href="boardGoodDelete.do"> <i class="ti-apple good"></i></a>
+						</c:if></th>
+					<td>좋아요 수 : ${goodNum }</td>
 					<th>첨부파일</th>
-					<td colspan="5">${vo.boardAttach }</td>
+					<td colspan="3">${vo.boardAttach }</td>
 				</tr>
+
+				<c:if test="${not empty coments }">
+					<c:forEach items="${coments}" var="com">
+						<tr>
+							<th>${com.comentNum }</th>
+							<td colspan="4">${com.comentContent }</td>
+							<td>${com.comentWriter }</td>
+						</tr>
+						<c:if test="${not empty cocoments }">
+							<c:forEach items="${cocoments }" var="cocom">
+								<c:if test="${cocom.comentConum eq com.comentNum }">
+									<tr>
+										<th></th>
+										<th>${cocom.comentNum }</th>
+										<td colspan="3">${cocom.comentContent }</td>
+										<td>${cocom.comentWriter }</td>
+									</tr>
+								</c:if>
+							</c:forEach>
+						</c:if>
+						<tr>
+							<th></th>
+							<th>댓글입력</th>
+							<td colspan="5F"><input type="text" id="cocoment"
+								name="cocoment" required="required"><input type="hidden"
+								value="${com.comentNum }">
+								<button type="button" onclick="cocomentInsert(this)">
+									<i class="ti-comment"></i>
+								</button></td>
+						</tr>
+					</c:forEach>
+				</c:if>
+				<tr>
+					<th>댓글입력</th>
+					<td colspan="5F"><input type="text" id="coment" name="coment">
+						<button type="button" id="coment" name="coment"
+							onclick="comentInsert(${vo.boardNum})">
+							<i class="ti-comment"></i>
+						</button></td>
+				</tr>
+
 			</table>
+
 		</div>
 		<br>
+		<div>
+			<form id="cocofrm" action="comentInsert.do" method="post">
+				<input type="hidden" id="cocomentContent" name="comentContent">
+				<input type="hidden" id="conum" name="conum"> <input
+					type="hidden" id="cobonum" name="bonum">
+
+
+			</form>
+		</div>
+		<div>
+			<form id="cofrm" action="comentInsert.do" method="post">
+				<input type="hidden" id="comentContent" name="comentContent"><input
+					type="hidden" id="bonum" name="bonum"><input type="hidden"
+					id="boconum" name="conum">
+
+			</form>
+		</div>
+
 		<div>
 			<c:if test="${vo.boardWriter eq name }">
 				<button type="button" onclick="subCall('E')">수정</button>&nbsp;&nbsp;
@@ -61,6 +155,18 @@
 			}
 
 			frm.submit();
+		}
+		function cocomentInsert(e){
+			document.getElementById("cocomentContent").value = e.parentElement.firstChild.value;
+			document.getElementById("cobonum").value = document.getElementById("id").value;
+			document.getElementById("conum").value = e.parentElement.firstChild.nextSibling.value;
+			cocofrm.submit();
+		}
+		function comentInsert(num){
+			document.getElementById("comentContent").value = document.getElementById("coment").value;
+			document.getElementById("bonum").value = num;
+			document.getElementById("boconum").value = 0;
+			cofrm.submit();
 		}
 	</script>
 

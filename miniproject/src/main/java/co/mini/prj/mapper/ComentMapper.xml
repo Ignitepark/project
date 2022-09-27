@@ -4,20 +4,58 @@
 	<!-- 댓글 번호 -->
 	<select id="comentSelectList"
 		resultType="co.mini.prj.coment.service.ComentVO">
-		SELECT * FROM COMENT
-	</select>
-
-	<select id="comentSelect"
-		resultType="co.mini.prj.coment.service.ComentVO">
-		SELECT * FROM COMENT WHERE COMENT_WRITER = #{comentWriter}
+		SELECT * FROM COMENT WHERE BOARD_NUM=#{num}
+		<if test="str=='CO'">
+			AND COMENT_CONUM = 0
+		</if>
+		<if test="str=='COCO'">
+			AND COMENT_CONUM > 0
+		</if>
+		ORDER BY COMENT_NUM
 	</select>
 
 	<insert id="ComentInsert"
 		parameterType="co.mini.prj.coment.service.ComentVO">
+		<selectKey keyProperty="comentNum" order="BEFORE"
+			resultType="int">
+			SELECT CASE WHEN
+			(SELECT MAX(COMENT_NUM) FROM COMENT WHERE
+			BOARD_NUM = #{boardNum} AND COMENT_CONUM=0) IS
+			NULL THEN 1 ELSE
+			(SELECT MAX(COMENT_NUM)
+			FROM COMENT WHERE BOARD_NUM =
+			#{boardNum} AND
+			COMENT_CONUM=0) + 1 END AS ID
+			FROM DUAL
+		</selectKey>
 		INSERT INTO COMENT VALUES
 		(#{comentNum},#{comentConum},
 		#{comentContent},#{comentWriter},
-		#{comentDate},#{comentType})
+		sysdate,#{comentType},#{boardNum})
+	</insert>
+
+	<insert id="CocomentInsert"
+		parameterType="co.mini.prj.coment.service.ComentVO">
+		<selectKey keyProperty="comentNum" order="BEFORE"
+			resultType="int">
+
+			SELECT CASE WHEN
+			(SELECT MAX(COMENT_NUM) FROM COMENT WHERE
+			BOARD_NUM =
+			#{boardNum} AND COMENT_CONUM= #{comentConum}) IS
+			NULL THEN 1
+			ELSE
+			(SELECT MAX(COMENT_NUM)
+			FROM COMENT WHERE BOARD_NUM =
+			#{boardNum}
+			AND
+			COMENT_CONUM= #{comentConum}) + 1 END AS ID
+			FROM DUAL
+		</selectKey>
+		INSERT INTO COMENT VALUES
+		(#{comentNum},#{comentConum},
+		#{comentContent},#{comentWriter},
+		sysdate,#{comentType},#{boardNum})
 	</insert>
 
 	<update id="ComentUpdate"
@@ -36,8 +74,4 @@
 		DELETE FROM COMENT WHERE COMENT_WRITER = #{comentWriter}
 	</delete>
 
-	<select id="comentSearchList"
-		resultType="co.mini.prj.coment.service.ComentVO">
-		SELECT * FROM COMENT WHERE COMENT_TYPE = #{str}
-	</select>
 </mapper>

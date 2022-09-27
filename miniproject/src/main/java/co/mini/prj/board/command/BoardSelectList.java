@@ -20,8 +20,9 @@ public class BoardSelectList implements Command {
 		BoardService dao = new BoardServiceImpl();
 
 		List<BoardVO> list = new ArrayList<BoardVO>();
+		List<BoardVO> noticeList = new ArrayList<BoardVO>();
 		List<BoardVO> resultList = new ArrayList<BoardVO>();
-		String str = request.getParameter("str");
+		String str = "";
 		String searchVal = "";
 		String searchMenu = "MENU";
 		int pageNum = 0;
@@ -56,6 +57,14 @@ public class BoardSelectList implements Command {
 			searchMenu = (String) session.getAttribute("searchMenu");
 			searchVal = (String) session.getAttribute("search");
 		}
+//		공지사항 최근 5개 골라주는 부분
+		list = dao.boardSelectList("NOTICE", "MENU", "");
+		for (int i = 0; i < 5; i++) {
+			noticeList.add(list.get(i));
+		}
+		request.setAttribute("noticeList", noticeList);
+//
+		str = "";
 		list = dao.boardSelectList(str, searchMenu, searchVal);
 		if (list.size() < pageAmount) {
 			request.setAttribute("list", list);
