@@ -62,7 +62,7 @@
 									<input type="hidden" name="search" value=""> <input
 										type="hidden" name="pageNum" value="1"> <input
 										type="hidden" name="pageAmount" value="20"><a
-										class="dropdown-item" href="#" onclick="noticefrm.submit()">공지사항
+										class="dropdown-item" href="#" onclick="noticefrm.submit()">게시판
 									</a>
 								</form>
 							</li>

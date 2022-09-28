@@ -268,7 +268,9 @@ td {
 }
 
 td:hover {
-	overflow: visible;
+	overflow: inherit;
+	text-overflow: ellipsis;
+	white-space: pre-line;
 }
 
 .notice {
@@ -331,7 +333,6 @@ td:hover {
 							<th scope="col" class="th-num">번호</th>
 							<th scope="col" class="th-title">제목</th>
 							<th scope="col" class="th-num">작성자</th>
-							<th scope="col" class="th-num">첨부파일</th>
 							<th scope="col" class="th-date">등록일</th>
 							<th scope="col" class="th-num">조회수</th>
 						</tr>
@@ -339,7 +340,7 @@ td:hover {
 					<tbody>
 						<c:if test="${empty list}">
 							<tr>
-								<td colspan="6">게시글이 존재하지 않습니다.</td>
+								<td colspan="5">게시글이 존재하지 않습니다.</td>
 							</tr>
 						</c:if>
 						<c:if test="${not empty noticeList }">
@@ -348,14 +349,13 @@ td:hover {
 									<td>${n.boardNum}</td>
 									<td><a href="#!" onclick="selectBoard('${n.boardNum}')">${n.boardTitle}</a></td>
 									<td>${n.boardWriter}</td>
-									<td>${n.boardAttach}</td>
 									<td>${n.boardDate}</td>
 									<td>${n.boardHit}</td>
 								</tr>
 							</c:forEach>
 						</c:if>
 						<tr>
-							<td colspan="6"></td>
+							<td colspan="5"></td>
 						</tr>
 						<c:if test="${not empty list}">
 							<c:forEach items="${list}" var="board">
@@ -364,7 +364,6 @@ td:hover {
 									<td><a href="#!"
 										onclick="selectBoard('${board.boardNum}')">${board.boardTitle}</a></td>
 									<td>${board.boardWriter}</td>
-									<td>${board.boardAttach}</td>
 									<td>${board.boardDate}</td>
 									<td>${board.boardHit}</td>
 									<input type="hidden" class="boardType"

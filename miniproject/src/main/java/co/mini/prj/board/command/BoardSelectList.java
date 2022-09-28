@@ -58,11 +58,17 @@ public class BoardSelectList implements Command {
 			searchVal = (String) session.getAttribute("search");
 		}
 //		공지사항 최근 5개 골라주는 부분
-		list = dao.boardSelectList("NOTICE", "MENU", "");
-		for (int i = 0; i < 5; i++) {
-			noticeList.add(list.get(i));
-		}
-		request.setAttribute("noticeList", noticeList);
+//		int length = 5;
+//		list = dao.boardSelectList("NOTICE", "MENU", "");
+//		if (list.size() > 0) {
+//			if (list.size() < 5) {
+//				length = list.size();
+//			}
+//			for (int i = 0; i < length; i++) {
+//				noticeList.add(list.get(i));
+//			}
+//		}
+		request.setAttribute("noticeList", dao.boardNoticeSelect());
 //
 		str = "";
 		list = dao.boardSelectList(str, searchMenu, searchVal);

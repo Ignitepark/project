@@ -14,15 +14,20 @@ public class ComentDelete implements Command {
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		ComentService dao = new ComentServiceImpl();
 		ComentVO vo = new ComentVO();
-		vo.setComentConum(Integer.valueOf(request.getParameter("num")));
-
+		vo.setComentConum(Integer.valueOf(request.getParameter("comentConum")));
+		vo.setComentNum(Integer.valueOf(request.getParameter("comentNum")));
+		vo.setBoardNum(Integer.valueOf(request.getParameter("boardNum")));
+		System.out.println(vo.getBoardNum());
+		System.out.println(vo.getComentNum());
+		System.out.println(vo.getComentConum());
 		String viewPage = "coment/comentError";
 		int a = dao.ComentDelete(vo);
 
+		
 		if (a != 0) {
-			viewPage = "comentSelectList.do";
+			viewPage = "boardSelect.do";
 		} else {
-			request.setAttribute("message", "»èÁ¦ ½ÇÆĞ !!");
+			request.setAttribute("message", "ì‚­ì œì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤!");
 		}
 
 		return viewPage;

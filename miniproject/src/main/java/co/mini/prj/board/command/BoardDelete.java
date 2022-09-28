@@ -15,7 +15,7 @@ public class BoardDelete implements Command {
 		
 		BoardService dao = new BoardServiceImpl();
 		BoardVO vo = new BoardVO();
-		vo.setBoardNum(Integer.valueOf(request.getParameter("num")));
+		vo.setBoardNum(Integer.valueOf(request.getParameter("boardNum")));
 		
 		String viewPage = "board/boardError";
 		int result = dao.boardDelete(vo);
@@ -23,7 +23,7 @@ public class BoardDelete implements Command {
 		if(result != 0) {
 			viewPage = "boardSelectList.do";
 		} else {
-			request.setAttribute("message", "»èÁ¦ ½ÇÆÐ!!");
+			request.setAttribute("message", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 		}
 		
 		return viewPage;

@@ -15,5 +15,4 @@ public interface ComentService {
 
 	int ComentDelete(ComentVO vo);
 
-	void ComentHitUpdate(int num);
 }

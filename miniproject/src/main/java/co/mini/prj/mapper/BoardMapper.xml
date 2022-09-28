@@ -21,6 +21,12 @@
 		SELECT * FROM BOARD WHERE BOARD_NUM = #{boardNum}
 	</select>
 
+	<select id="boardNoticeSelect"
+		resultType="co.mini.prj.board.service.BoardVO">
+		SELECT * FROM (SELECT * FROM BOARD WHERE BOARD_TYPE='NOTICE' ORDER BY
+		BOARD_NUM DESC) WHERE ROWNUM<![CDATA[ <= ]]>5
+	</select>
+
 	<insert id="boardInsert"
 		parameterType="co.mini.prj.board.service.BoardVO">
 		<selectKey keyProperty="boardNum" resultType="int"
@@ -29,32 +35,23 @@
 			MAX(BOARD_Num) + 1 END AS ID
 			FROM BOARD
 		</selectKey>
-		INSERT INTO BOARD
-		VALUES(#{boardNum}, #{boardWriter},
-		#{boardTitle},#{boardDate},
-		#{boardHit},#{boardContent},
-		#{boardType},#{boardAttach},
-		#{boardAttachDir})
+		INSERT INTO
+		BOARD(BOARD_NUM,BOARD_TITLE,BOARD_WRITER,BOARD_CONTENT,BOARD_TYPE)
+		VALUES(#{boardNum}, #{boardTitle},
+		#{boardWriter},#{boardContent},
+		#{boardType})
 	</insert>
 
 	<update id="boardUpdate"
 		parameterType="co.mini.prj.board.service.BoardVO">
-		UPDATE BOARD
-		<set>
-			<if test="boardNum != null">BOARD_NUM = #{boardNum},</if>
-			<if test="boardWriter != null"> BOARD_WRITER = #{boardWriter},</if>
-			<if test="boardTitle != null"> BOARD_TITLE = #{boardTitle},</if>
-			<if test="boardDate != null"> BOARD_DATE = #{boardDate},</if>
-			<if test="boardContent != null">BOARD_CONTENT = #{boardContent}</if>
-			<if test="boardAttach != null"> BOARD_Attach = #{boardAttach},</if>
-			<if test="boardAttachDirectory != null"> BOARD_Attach_DIR= #{boardAttachDir}</if>
-		</set>
-		WHERE BOARD_WRITER = #{BOARD_WRITER}
+		UPDATE BOARD SET BOARD_TITLE = #{boardTitle},
+		BOARD_CONTENT = #{boardContent}
+		WHERE BOARD_NUM = #{boardNum}
 	</update>
 
 	<delete id="boardDelete"
 		parameterType="co.mini.prj.board.service.BoardVO">
-		DELETE FROM BOARD WHERE BOARD_WRITER = #{boardWriter}
+		DELETE FROM BOARD WHERE BOARD_NUM = #{boardNum}
 	</delete>
 
 	<update id="boardHitUpdate"

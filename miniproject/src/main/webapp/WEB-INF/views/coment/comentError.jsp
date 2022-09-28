@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div align="center">
-		
+		<br><br><br><br><br><br><br><br>
 		<div><h1>${message}</h1></div>
 	</div>
 </body>

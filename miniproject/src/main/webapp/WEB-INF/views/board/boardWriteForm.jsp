@@ -12,47 +12,44 @@
 
 		<div>
 			<h1>공지사항 등록</h1>
-			<br>
-			<br>
-			<br>
+			<br> <br> <br>
 		</div>
 		<form id="frm" action="boardInsert.do" method="post">
 			<div>
 				<table border="1">
 					<tr>
-						<th width="100">작성자</th>
-						<td><input type="text" id="boardWriter" name="boardWriter"
-							value="${name }"></td>
-						<th width="150">작성일자</th>
-						<td><input type="date" id="boardDate" name="boardDate"
-							required="required"></td>
-					</tr>
-					<tr>
 						<th>제목</th>
 						<td colspan="3"><input type="text" size="87" id="boardTitle"
-							name="boardTitle" required="required"></td>
+							name="boardTitle" required="required">공지사항<input
+							type="checkbox" name="checkType" onclick="isChecked(this)"></td>
 					</tr>
 					<tr>
 						<th>내용</th>
 						<td colspan="3"><textArea rows="10" cols="88"
 								id="boardContent" name="boardContent"></textArea></td>
 					</tr>
-					<tr>
-						<th>첨부파일</th>
-						<td colspan="3"><input type="file" id="file" name="file">
-						</td>
-					</tr>
 				</table>
 			</div>
 			<br>
 			<div>
-				<input type="hidden" name="boardType" value="NOTICE"> <input
-					type="submit" value="등록">&nbsp;&nbsp;&nbsp; <input
-					type="reset" value="취소">&nbsp;&nbsp;&nbsp; <input
+				<input type="hidden" id="boardWriter" name="boardWriter"
+					value="${memberName }"> <input type="hidden" id="boardType"
+					name="boardType"> <input type="submit" value="등록">&nbsp;&nbsp;&nbsp;
+				<input type="reset" value="취소">&nbsp;&nbsp;&nbsp; <input
 					type="button" value="목록"
 					onclick="location.href='boardSelectList.do'">&nbsp;&nbsp;&nbsp;
 			</div>
 		</form>
 	</div>
+
+	<script type="text/javascript">
+		function isChecked(box) {
+			if (box.checked) {
+				document.getElementById("boardType").value = "NOTICE";
+			} else {
+				document.getElementById("boardType").value = "";
+			}
+		}
+	</script>
 </body>
 </html>

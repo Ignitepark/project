@@ -25,7 +25,6 @@ public class BoardSelect implements Command {
 		HttpSession session = request.getSession();
 		List<ComentVO> colist = new ArrayList<ComentVO>();
 		List<ComentVO> cocolist = new ArrayList<ComentVO>();
-		System.out.println(request.getParameter("id"));
 		int num = 0;
 		if (request.getParameter("id") == null) {
 			num = Integer.parseInt(String.valueOf(session.getAttribute("nowPage")));

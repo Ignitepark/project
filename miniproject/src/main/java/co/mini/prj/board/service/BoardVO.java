@@ -12,9 +12,7 @@ public class BoardVO {
 	private String boardTitle; // ������
 	private String boardWriter; // �� �ۼ���
 	private String boardContent; // �� ����
-	private String boardHit; // �� ��ȸ��
+	private int boardHit; // �� ��ȸ��
 	private Date boardDate; // ��¥
 	private String boardType; // �� Ÿ��
-	private String boardAttach;
-	private String boardAttachDir;
 }

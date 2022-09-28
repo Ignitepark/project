@@ -9,6 +9,8 @@ import co.mini.prj.board.service.BoardVO;
 public interface BoardMapper {
 	List<BoardVO> boardSelectList(@Param("str") String str, @Param("searchMenu") String searchMenu,
 			@Param("searchVal") String searchVal);
+	
+	List<BoardVO> boardNoticeSelect();
 
 	BoardVO boardSelect(BoardVO vo);
 

@@ -43,11 +43,6 @@ public class ComentServiceImpl implements ComentService {
 		return map.ComentDelete(vo);
 	}
 
-	@Override
-	public void ComentHitUpdate(int num) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public int CocomentInsert(ComentVO vo) {

@@ -23,7 +23,6 @@ import co.mini.prj.board.command.BoardSelectList;
 import co.mini.prj.board.command.BoardWriteForm;
 import co.mini.prj.coment.command.ComentDelete;
 import co.mini.prj.coment.command.ComentEdit;
-import co.mini.prj.coment.command.ComentEditForm;
 import co.mini.prj.coment.command.ComentInsert;
 import co.mini.prj.coment.command.ComentWriteForm;
 import co.mini.prj.common.Command;
@@ -82,7 +81,6 @@ public class FrontController extends HttpServlet {
 		// 댓글
 		map.put("/comentWriteForm.do", new ComentWriteForm());
 		map.put("/comentInsert.do", new ComentInsert());
-		map.put("/comentEditForm.do", new ComentEditForm());
 		map.put("/comentEdit.do", new ComentEdit());
 		map.put("/comentDelete.do", new ComentDelete());
 

@@ -18,18 +18,15 @@ public class BoardEdit implements Command {
 		BoardService dao = new BoardServiceImpl();
 		BoardVO vo = new BoardVO();
 		vo.setBoardNum(Integer.valueOf(request.getParameter("boardNum")));
-		vo.setBoardDate(Date.valueOf(request.getParameter("boardDate")));
 		vo.setBoardTitle(request.getParameter("boardTitle"));
 		vo.setBoardContent(request.getParameter("boardContent"));
 		
 		String viewPage = "board/boardError";
 		int n = dao.boardUpdate(vo);
 		if(n != 0) {
-			vo = dao.boardSelect(vo);
-			request.setAttribute("vo", vo);
-			viewPage = "board/boardSelect";
+			viewPage = "boardSelect.do";
 		} else {
-			request.setAttribute("message", "¼öÁ¤ ½ÇÆÐ");
+			request.setAttribute("message", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 		
 		

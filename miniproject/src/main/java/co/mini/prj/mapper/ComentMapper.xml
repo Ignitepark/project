@@ -43,7 +43,8 @@
 			(SELECT MAX(COMENT_NUM) FROM COMENT WHERE
 			BOARD_NUM =
 			#{boardNum} AND COMENT_CONUM= #{comentConum}) IS
-			NULL THEN 1
+			NULL THEN
+			1
 			ELSE
 			(SELECT MAX(COMENT_NUM)
 			FROM COMENT WHERE BOARD_NUM =
@@ -60,18 +61,17 @@
 
 	<update id="ComentUpdate"
 		parameterType="co.mini.prj.coment.service.ComentVO">
-		<set>
-			<if test="comentNum != null">COMENT_CONUM = #{comentConum},</if>
-			<if test="comentWriter != null"> COMENT_WRITER = #{comentWriter},</if>
-			<if test="comnetDate != null"> COMENT_DATE = #{comentDate},</if>
-			<if test="comentContent != null">COMENT_CONTENT = #{comentContent}</if>
-		</set>
-		WHERE COMENT_WRITER = #{COMENT_WRITER}
+		UPDATE COMENT SET
+		COMENT_CONTENT = #{comentContent}
+		WHERE
+		COMENT_WRITER = #{comentWriter} AND BOARD_NUM=#{boardNum} AND
+		COMENT_NUM = #{comentNum}
+		AND COMENT_CONUM = #{comentConum}
 	</update>
 
 	<delete id="ComentDelete"
 		parameterType="co.mini.prj.coment.service.ComentVO">
-		DELETE FROM COMENT WHERE COMENT_WRITER = #{comentWriter}
+		DELETE FROM COMENT WHERE COMENT_NUM=#{comentNum} AND COMENT_CONUM=#{comentConum} AND BOARD_NUM = #{boardNum}
 	</delete>
 
 </mapper>

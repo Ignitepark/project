@@ -73,4 +73,10 @@ public class BoardServiceImpl implements BoardService {
 		return map.boardGoodExist(boardNum, memberNum);
 	}
 
+	@Override
+	public List<BoardVO> boardNoticeSelect() {
+		// TODO Auto-generated method stub
+		return map.boardNoticeSelect();
+	}
+
 }

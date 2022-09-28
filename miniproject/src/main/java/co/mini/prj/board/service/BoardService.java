@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 public interface BoardService {
 	List<BoardVO> boardSelectList(String str, String searchMenu, String searchVal);
 
+	List<BoardVO> boardNoticeSelect();
+
 	BoardVO boardSelect(BoardVO vo);
 
 	int boardInsert(BoardVO vo);
