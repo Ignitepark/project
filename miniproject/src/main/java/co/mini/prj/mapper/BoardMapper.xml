@@ -24,7 +24,7 @@
 	<select id="boardNoticeSelect"
 		resultType="co.mini.prj.board.service.BoardVO">
 		SELECT * FROM (SELECT * FROM BOARD WHERE BOARD_TYPE='NOTICE' ORDER BY
-		BOARD_NUM DESC) WHERE ROWNUM<![CDATA[ <= ]]>5
+		BOARD_NUM DESC) WHERE ROWNUM<![CDATA[ <= ]]>3
 	</select>
 
 	<insert id="boardInsert"

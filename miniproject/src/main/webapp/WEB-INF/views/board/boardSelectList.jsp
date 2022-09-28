@@ -13,8 +13,8 @@ td {
 
 .pageNum {
 	color: #042a33;
-	background-color: #f1eac0;
-	border: 1px solid #bfe9f3;
+	background-color: #ffffff;
+	border: 1px solid #000000;
 	border-radius: 4px;
 	padding: 15px 18px 30px 15px cursor: pointer;
 	width: 20px;
@@ -40,8 +40,8 @@ td {
 
 .writeBtn {
 	color: #042a33;
-	background-color: #f1eac0;
-	border: 1px solid #bfe9f3;
+	background-color: #ffffff;
+	border: 1px solid #000000;
 	border-radius: 4px;
 	padding: 15px 18px 30px 15px cursor: pointer;
 	width: 50px;
@@ -280,15 +280,22 @@ td:hover {
 </head>
 <body></body>
 <div align="center">
-
+	<section class="page-title bg-2">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<ul class="list-inline mb-0">
+						<li class="list-inline-item"><a href="boardSelectList.do"
+							class="text-sm letter-spacing text-white text-uppercase font-weight-bold">Board</a></li>
+						<li class="list-inline-item"><span class="text-white">|</span></li>
+						<li class="list-inline-item"><a href="#"
+							class="text-color text-uppercase text-sm letter-spacing">POSTS</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
 	<div>
-		<h1>게시글 목록</h1>
-	</div>
-	<div>
-		<br> <br> <br> <br>
-
-
-
 		<div id="board-search" align="left">
 			<div class="container">
 				<div class="search-window">
@@ -347,7 +354,7 @@ td:hover {
 							<c:forEach items="${noticeList }" var="n">
 								<tr class="notice">
 									<td>${n.boardNum}</td>
-									<td><a href="#!" onclick="selectBoard('${n.boardNum}')">${n.boardTitle}</a></td>
+									<td><a href="#!" onclick="selectBoard('${n.boardNum}')"> []※공지사항※] ${n.boardTitle}</a></td>
 									<td>${n.boardWriter}</td>
 									<td>${n.boardDate}</td>
 									<td>${n.boardHit}</td>
@@ -396,8 +403,7 @@ td:hover {
 					class="writeBtn">글쓰기</button>
 			</c:if>
 		</form>
-
-
+		<br>
 	</div>
 </div>
 <script type="text/javascript">
@@ -427,6 +433,4 @@ td:hover {
 	//
 </script>
 </body>
-
-
 </html>
